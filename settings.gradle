@@ -1,0 +1,11 @@
+rootProject.name = 'earProject'
+
+include 'earModule'
+
+include 'ejbModule'
+
+include 'apiModule'
+
+include 'appClientModule'
+
+

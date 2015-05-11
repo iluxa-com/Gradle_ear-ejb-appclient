@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+version = '1.0'
+
+dependencies {
+    compile project(':apiModule')
+    compile 'javax:javaee-api:7.0'
+}
+
+jar {
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}

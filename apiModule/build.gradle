@@ -1,0 +1,8 @@
+apply plugin: 'java'
+
+version = '1.0'
+
+
+dependencies {
+    compile 'javax:javaee-api:7.0'
+}
