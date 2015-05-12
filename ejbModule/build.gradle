@@ -3,12 +3,45 @@ apply plugin: 'application'
 
 version = '1.0'
 
+buildDir = 'target/gradle-build'
 
+repositories {
+    maven {
+        url 'http://repository.jboss.org/nexus/content/groups/public'
+    }
+}
+configurations {
+    compileOnly
+    weldEmbeddedTestRuntime { extendsFrom testRuntime }
+}
+
+sourceSets {
+    main {
+        compileClasspath = configurations.compile + configurations.compileOnly
+    }
+    test {
+        compileClasspath = compileClasspath + configurations.compileOnly
+    }
+}
 
 dependencies {
     compile project(':apiModule')
+    compile 'org.jboss.spec:jboss-javaee-7.0:1.0.2.Final'
 
-    compile 'javax:javaee-api:7.0'
+    testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.5.Final'
+
+    // temporarily downgrade the weld-ee-embedded-1.1 container
+    weldEmbeddedTestRuntime 'org.jboss.weld.arquillian.container:arquillian-weld-ee-embedded-1.1:1.1.2.Final'
+    weldEmbeddedTestRuntime 'org.jboss.spec:jboss-javaee-7.0:1.0.2.Final'
+    weldEmbeddedTestRuntime 'org.jboss.weld:weld-core:2.2.11.Final'
+    weldEmbeddedTestRuntime 'org.slf4j:slf4j-log4j12:1.7.12'
+    weldEmbeddedTestRuntime 'log4j:log4j:1.2.17'
+
+}
+
+task weldEmbeddedTest(type: Test) {
+    testClassesDir = sourceSets.test.output.classesDir
+    classpath = sourceSets.test.runtimeClasspath + sourceSets.main.runtimeClasspath  + configurations.weldEmbeddedTestRuntime
 }
 
 // utworzenie jara z zaleznosciami compile

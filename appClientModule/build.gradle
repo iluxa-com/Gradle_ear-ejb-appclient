@@ -6,7 +6,8 @@ version = '1.0'
 
 dependencies {
     compile project(':apiModule')
-    compile 'javax:javaee-api:7.0'
+    'org.jboss.spec:jboss-javaee-7.0:1.0.2.Final'
+
 }
 
 jar {
