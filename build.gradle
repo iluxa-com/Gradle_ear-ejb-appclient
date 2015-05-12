@@ -6,9 +6,20 @@ subprojects {
 
     repositories {
         mavenCentral()
+        maven { url 'http://repository.jboss.org/nexus/content/groups/public' }
+        maven { url 'http://repository.jboss.org/nexus/content/repositories/deprecated' }
+        maven { url 'http://repo.jfrog.org/artifactory/repo' }
     }
+
 
     dependencies {
         testCompile group: 'junit', name: 'junit', version: '4.11'
     }
+    ext.libraryVersions = [
+            javaee                  : '7.0',
+            wildfly                 : '8.1.0.Final',
+            junit                   : '4.11',
+            arquillian              : '1.1.5.Final',
+            shrinkWrapResolverGradle: '2.2.0-beta-1'
+    ]
 }

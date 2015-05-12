@@ -4,5 +4,5 @@ version = '1.0'
 
 
 dependencies {
-    compile 'javax:javaee-api:7.0'
+    compile 'org.jboss.spec:jboss-javaee-7.0:1.0.2.Final'
 }

@@ -5,11 +5,6 @@ version = '1.0'
 
 buildDir = 'target/gradle-build'
 
-repositories {
-    maven {
-        url 'http://repository.jboss.org/nexus/content/groups/public'
-    }
-}
 configurations {
     compileOnly
     weldEmbeddedTestRuntime { extendsFrom testRuntime }
@@ -31,11 +26,10 @@ dependencies {
     testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.5.Final'
 
     // temporarily downgrade the weld-ee-embedded-1.1 container
-    weldEmbeddedTestRuntime 'org.jboss.weld.arquillian.container:arquillian-weld-ee-embedded-1.1:1.1.2.Final'
-    weldEmbeddedTestRuntime 'org.jboss.spec:jboss-javaee-7.0:1.0.2.Final'
-    weldEmbeddedTestRuntime 'org.jboss.weld:weld-core:2.2.11.Final'
-    weldEmbeddedTestRuntime 'org.slf4j:slf4j-log4j12:1.7.12'
-    weldEmbeddedTestRuntime 'log4j:log4j:1.2.17'
+    testCompile "org.jboss.arquillian.junit:arquillian-junit-container:${libraryVersions.arquillian}"
+    testCompile "org.jboss.arquillian.protocol:arquillian-protocol-servlet:${libraryVersions.arquillian}"
+    testCompile "org.wildfly:wildfly-arquillian-container-managed:${libraryVersions.wildfly}"
+    testCompile "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-gradle-depchain:${libraryVersions.shrinkWrapResolverGradle}"
 
 }
 
@@ -47,4 +41,11 @@ task weldEmbeddedTest(type: Test) {
 // utworzenie jara z zaleznosciami compile
 jar {
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+test {
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+        exceptionFormat = 'full'
+    }
 }
