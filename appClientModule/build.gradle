@@ -6,7 +6,6 @@ version = '1.0'
 
 dependencies {
     compile project(':apiModule')
-    runtime project(':apiModule')
     compile 'javax:javaee-api:7.0'
 }
 

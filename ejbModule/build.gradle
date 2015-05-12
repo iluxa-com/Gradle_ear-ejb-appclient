@@ -1,12 +1,17 @@
 apply plugin: 'java'
+apply plugin: 'application'
 
 version = '1.0'
 
+
+
 dependencies {
     compile project(':apiModule')
+
     compile 'javax:javaee-api:7.0'
 }
 
+// utworzenie jara z zaleznosciami compile
 jar {
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
 }

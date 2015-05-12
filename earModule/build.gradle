@@ -1,13 +1,18 @@
 apply plugin: 'ear'
 apply plugin: 'java'
 
-repositories { mavenCentral() }
+// mapa modulow java
+Map<String,String> javaMap =
+    [appClientModule:'java']
+
 
 dependencies {
     // The following dependencies will be the ear modules and
     // will be placed in the ear root
     deploy project(':ejbModule')
-    deploy project(':appClientModule')
+    javaMap.each {
+        deploy project(":$it.key")
+    }
 
     // The following dependencies will become ear libs and will
     // be placed in a dir configured via the libDirName property
@@ -29,7 +34,10 @@ ear {
         description = "My customized EAR for the Gradle documentation"
 //      libraryDirectory = "APP-INF/lib"  // not needed, above libDirName setting does this
         // ->> zautomatyzowac dodanie odp. modulu (wersja)
-        module("appClientModule-1.0.jar", "java")  // won't deploy as my.jar isn't deploy dependency
+        javaMap.each {
+            module(it.key + '-' + project(":$it.key").version  + ".jar", it.value)
+        }
+
 //      webModule("my.war", "/")  // won't deploy as my.war isn't deploy dependency
         securityRole "admin"
         securityRole "superadmin"
