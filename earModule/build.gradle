@@ -2,9 +2,9 @@ apply plugin: 'ear'
 apply plugin: 'java'
 
 // mapa modulow java
-Map<String,String> javaMap =
-    [appClientModule:'java']
-
+Map<String,String> javaMap = [
+        'appClientModule':'java',
+        'entities-persistence': 'java']
 
 
 

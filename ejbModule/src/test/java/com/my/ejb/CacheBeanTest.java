@@ -4,7 +4,7 @@ import com.my.remote.CacheBeanRemote;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-//import org.jboss.shrinkwrap.api.gradle.archive.importer.embedded.EmbeddedGradleImporter;
+import org.jboss.shrinkwrap.api.gradle.archive.importer.embedded.EmbeddedGradleImporter;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
@@ -43,11 +43,12 @@ public class CacheBeanTest {
         Assert.assertTrue(cache != null);
     }
 
-//    @Test
-//    public void addToCache() {
-//        cache.add("1",1);
-//        Assert.assertTrue("Powinien zawierac 1",  cache.contains("1"));
-//    }
+    @Test
+    public void addToCache() {
+        cache.add("1",1);
+        Assert.assertTrue("Powinien zawierac 1",  cache.contains("1"));
+        cache.remove("1");
+    }
 
 
 }

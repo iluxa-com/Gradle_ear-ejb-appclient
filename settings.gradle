@@ -8,4 +8,5 @@ include 'apiModule'
 
 include 'appClientModule'
 
+include 'entities-persistence'
 

@@ -23,6 +23,8 @@ dependencies {
     compile project(':apiModule')
     compile 'org.jboss.spec:jboss-javaee-7.0:1.0.2.Final'
 
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testRuntime group: 'junit', name: 'junit', version: '4.11'
     testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.5.Final'
 
     // temporarily downgrade the weld-ee-embedded-1.1 container
@@ -43,9 +45,9 @@ jar {
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
 }
 
-test {
-    testLogging {
-        events 'passed', 'skipped', 'failed'
-        exceptionFormat = 'full'
-    }
-}
+//test {
+//    testLogging {
+//        events 'passed', 'skipped', 'failed'
+//        exceptionFormat = 'full'
+//    }
+//}
