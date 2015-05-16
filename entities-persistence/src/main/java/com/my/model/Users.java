@@ -8,6 +8,10 @@ import java.io.Serializable;
  * Created by marcin on 15.05.15.
  */
 @Entity
+//@NamedQueries({
+//        @NamedQuery(name = "CustomerDTO.findByLastName",
+//                query = "Select c from where c.lastName = :ln")   // : ln - parametr do zapytania
+//})
 @Table(name="Users", schema ="APP")
 public class Users implements Serializable{
     private static final long serialVersionUID = 1L;

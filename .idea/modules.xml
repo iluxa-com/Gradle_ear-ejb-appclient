@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/apiModule/apiModule.iml" filepath="$PROJECT_DIR$/apiModule/apiModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/appClientModule/appClientModule.iml" filepath="$PROJECT_DIR$/appClientModule/appClientModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/earModule/earModule.iml" filepath="$PROJECT_DIR$/earModule/earModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/earProject.iml" filepath="$PROJECT_DIR$/earProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ejbModule/ejbModule.iml" filepath="$PROJECT_DIR$/ejbModule/ejbModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/entities-persistence/entities-persistence.iml" filepath="$PROJECT_DIR$/entities-persistence/entities-persistence.iml" />
+    </modules>
+  </component>
+</project>
