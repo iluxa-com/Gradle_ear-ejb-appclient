@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+version = '1.0'
+
+
+dependencies {
+    compile 'org.eclipse.persistence:eclipselink:2.5.0'
+    compile 'org.eclipse.persistence:javax.persistence:2.1.0'
+    runtime 'org.eclipse.persistence:javax.persistence:2.1.0'
+    runtime 'org.eclipse.persistence:eclipselink:2.5.0'
+}

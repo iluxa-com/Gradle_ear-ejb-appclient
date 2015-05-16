@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import com.my.remote.*;
+import com.my.remote.CacheBeanRemote;
 /**
  * Created by marcin on 02.05.15.
  */

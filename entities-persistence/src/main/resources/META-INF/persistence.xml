@@ -1,10 +1,22 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence persistence_2_0.xsd" version="2.0">
-    <persistence-unit name="pu" transaction-type="JTA">
+    <persistence-unit name="test" transaction-type="JTA">
+        <provider>
+            org.eclipse.persistence.jpa.PersistenceProvider
+        </provider>
         <jta-data-source>java:jboss/datasources/jpaExample</jta-data-source>
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <class>com.my.model.Users</class>
         <properties>
+            <!-- EclipseLink should create the database schema automatically -->
             <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
-        <properties/>
+            <property name="eclipselink.ddl-generation.output-mode" value="database" />
+
+            <!-- Configure simple SQL logging for demonstration. -->
+            <property name="eclipselink.logging.level" value="FINE" />
+            <property name="eclipselink.logging.thread" value="false" />
+            <property name="eclipselink.logging.session" value="false" />
+            <property name="eclipselink.logging.exceptions" value="false" />
+            <property name="eclipselink.logging.timestamp" value="false" />
+        </properties>
     </persistence-unit>
 </persistence>

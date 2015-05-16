@@ -22,10 +22,18 @@ sourceSets {
 dependencies {
     compile project(':apiModule')
     compile 'org.jboss.spec:jboss-javaee-7.0:1.0.2.Final'
+    compile project(':entities-persistence')
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testRuntime group: 'junit', name: 'junit', version: '4.11'
     testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.5.Final'
+
+    testCompile project(':entities-persistence')
+    testRuntime project(':entities-persistence')
+    testCompile 'org.eclipse.persistence:eclipselink:2.5.0'
+    testCompile 'org.eclipse.persistence:javax.persistence:2.1.0'
+    testRuntime 'org.eclipse.persistence:javax.persistence:2.1.0'
+    testRuntime 'org.eclipse.persistence:eclipselink:2.5.0'
 
     // temporarily downgrade the weld-ee-embedded-1.1 container
     testCompile "org.jboss.arquillian.junit:arquillian-junit-container:${libraryVersions.arquillian}"
