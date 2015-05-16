@@ -30,6 +30,10 @@ dependencies {
 
     testCompile project(':entities-persistence')
     testRuntime project(':entities-persistence')
+    testCompile 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final'
+    testCompile 'org.hibernate:hibernate-entitymanager:4.3.9.Final'
+    testRuntime 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final'
+    testRuntime 'org.hibernate:hibernate-entitymanager:4.3.9.Final'
     testCompile 'org.eclipse.persistence:eclipselink:2.5.0'
     testCompile 'org.eclipse.persistence:javax.persistence:2.1.0'
     testRuntime 'org.eclipse.persistence:javax.persistence:2.1.0'

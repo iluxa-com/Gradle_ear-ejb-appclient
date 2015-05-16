@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class Users implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.TABLE)
     private Integer id;
     String firstName;
     String lastName;
@@ -30,10 +30,6 @@ public class Users implements Serializable{
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getFirstName() {
