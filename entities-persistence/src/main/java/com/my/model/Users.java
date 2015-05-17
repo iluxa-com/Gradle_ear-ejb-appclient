@@ -7,11 +7,11 @@ import java.io.Serializable;
 /**
  * Created by marcin on 15.05.15.
  */
+@NamedQueries({
+        @NamedQuery(name = "Users.findByLastName",
+                query = "Select u from Users u where u.lastName = :ln")   // : ln - parametr do zapytania
+})
 @Entity
-//@NamedQueries({
-//        @NamedQuery(name = "CustomerDTO.findByLastName",
-//                query = "Select c from where c.lastName = :ln")   // : ln - parametr do zapytania
-//})
 @Table(name="Users", schema ="APP")
 public class Users implements Serializable{
     private static final long serialVersionUID = 1L;

@@ -6,6 +6,7 @@ version = '1.0'
 
 dependencies {
     compile project(':apiModule')
+    compile project(':entities-persistence')
     'org.jboss.spec:jboss-javaee-7.0:1.0.2.Final'
 
 }

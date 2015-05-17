@@ -4,8 +4,8 @@ apply plugin: 'java'
 // mapa modulow java
 Map<String,String> javaMap = [
         'appClientModule':'java',
-        'entities-persistence': 'java']
-
+        'entities-persistence': 'java',
+        'apiModule': 'java']
 
 
 dependencies {
@@ -16,14 +16,13 @@ dependencies {
         deploy project(":$it.key")
     }
 
+
     // The following dependencies will become ear libs and will
     // be placed in a dir configured via the libDirName property
     earlib group: 'log4j', name: 'log4j', version: '1.2.15', ext: 'jar'
-    earlib project(':apiModule')
+    //earlib project(':apiModule')
 
 }
-
-
 
 ear {
     appDirName 'src/main/app'  // use application metadata found in this folder
@@ -49,3 +48,4 @@ ear {
 
     }
 }
+

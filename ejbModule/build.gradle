@@ -5,39 +5,33 @@ version = '1.0'
 
 buildDir = 'target/gradle-build'
 
-configurations {
-    compileOnly
-    weldEmbeddedTestRuntime { extendsFrom testRuntime }
-}
+//configurations {
+//    compileOnly
+//    wildflyTestRuntime { extendsFrom testRuntime }
+//}
 
-sourceSets {
-    main {
-        compileClasspath = configurations.compile + configurations.compileOnly
-    }
-    test {
-        compileClasspath = compileClasspath + configurations.compileOnly
-    }
-}
+//sourceSets {
+//    main {
+//        compileClasspath = configurations.compile
+//    }
+//    test {
+//       // compileClasspath = compileClasspath
+//    }
+//}
 
 dependencies {
+    compile 'log4j:log4j:1.2.17'
+    runtime 'log4j:log4j:1.2.17'
     compile project(':apiModule')
     compile 'org.jboss.spec:jboss-javaee-7.0:1.0.2.Final'
     compile project(':entities-persistence')
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
-    testRuntime group: 'junit', name: 'junit', version: '4.11'
     testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.5.Final'
 
     testCompile project(':entities-persistence')
-    testRuntime project(':entities-persistence')
     testCompile 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final'
     testCompile 'org.hibernate:hibernate-entitymanager:4.3.9.Final'
-    testRuntime 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final'
-    testRuntime 'org.hibernate:hibernate-entitymanager:4.3.9.Final'
-    testCompile 'org.eclipse.persistence:eclipselink:2.5.0'
-    testCompile 'org.eclipse.persistence:javax.persistence:2.1.0'
-    testRuntime 'org.eclipse.persistence:javax.persistence:2.1.0'
-    testRuntime 'org.eclipse.persistence:eclipselink:2.5.0'
 
     // temporarily downgrade the weld-ee-embedded-1.1 container
     testCompile "org.jboss.arquillian.junit:arquillian-junit-container:${libraryVersions.arquillian}"
@@ -47,9 +41,9 @@ dependencies {
 
 }
 
-task weldEmbeddedTest(type: Test) {
+task wildflyTest(type: Test) {
     testClassesDir = sourceSets.test.output.classesDir
-    classpath = sourceSets.test.runtimeClasspath + sourceSets.main.runtimeClasspath  + configurations.weldEmbeddedTestRuntime
+    classpath = sourceSets.test.runtimeClasspath + sourceSets.main.runtimeClasspath
 }
 
 // utworzenie jara z zaleznosciami compile
@@ -57,9 +51,9 @@ jar {
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
 }
 
-//test {
-//    testLogging {
-//        events 'passed', 'skipped', 'failed'
-//        exceptionFormat = 'full'
-//    }
-//}
+test {
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+        exceptionFormat = 'full'
+    }
+}

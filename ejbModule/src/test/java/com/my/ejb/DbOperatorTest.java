@@ -10,6 +10,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -37,6 +38,14 @@ public class DbOperatorTest {
     @Inject
     UserTransaction utx;
 
+    @Before
+    public void clearTable() throws Exception{
+        utx.begin();
+        em.joinTransaction();
+        em.createQuery("delete from Users").executeUpdate();
+        utx.commit();
+    }
+
     @Test
     public void isEntityManagerNotNull() throws Exception {
         Assert.assertTrue(em != null);
@@ -47,17 +56,11 @@ public class DbOperatorTest {
         Assert.assertTrue(utx != null);
     }
 
-    @Test
-    public void clearData() throws Exception {
-        utx.begin();
-        em.joinTransaction();
-        System.out.println("Dumping old records...");
-        Users u = new Users();
-        em.persist(u);
-        //em.createQuery("delete from User").executeUpdate();
-        utx.commit();
-    }
 
+    @Test
+    public void addUser() throws Exception {
+
+    }
 
 
 }

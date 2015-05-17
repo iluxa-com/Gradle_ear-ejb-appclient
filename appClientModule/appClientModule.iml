@@ -15,5 +15,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="apiModule" exported="" />
+    <orderEntry type="module" module-name="entities-persistence" />
   </component>
 </module>

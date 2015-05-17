@@ -11,6 +11,7 @@ import com.my.remote.CacheBeanRemote;
 /**
  * Created by marcin on 02.05.15.
  */
+@SuppressWarnings("ALL")
 @Startup
 @Singleton
 public class CacheBean implements CacheBeanRemote{
@@ -55,6 +56,7 @@ public class CacheBean implements CacheBeanRemote{
     }
 
 
+    @SuppressWarnings("PackageAccessibility")
     @Schedule(dayOfMonth = "*", dayOfWeek =  "*", hour = "*", minute = "0/2")
     void clearCache() {
         // dla kazdego objektu w cache

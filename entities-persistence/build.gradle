@@ -4,8 +4,6 @@ version = '1.0'
 
 
 dependencies {
-    compile 'org.eclipse.persistence:eclipselink:2.5.0'
-    compile 'org.eclipse.persistence:javax.persistence:2.1.0'
-    runtime 'org.eclipse.persistence:javax.persistence:2.1.0'
-    runtime 'org.eclipse.persistence:eclipselink:2.5.0'
+    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final'
+    compile 'org.hibernate:hibernate-entitymanager:4.3.9.Final'
 }
