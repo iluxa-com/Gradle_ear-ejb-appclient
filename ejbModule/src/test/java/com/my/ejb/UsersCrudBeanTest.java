@@ -4,6 +4,7 @@ import com.my.interceptor.Interceptor;
 import com.my.model.Users;
 import com.my.remote.GenericCrudRemote;
 import com.my.remote.UsersCrudRemote;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.fest.assertions.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -17,11 +18,13 @@ import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
+import javax.mail.MessagingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 import static org.junit.Assert.*;
 
@@ -67,7 +70,7 @@ public class UsersCrudBeanTest {
 
         usersCrudBean.save(user);
         List<Users> result = usersCrudBean.findByLastName("b");
-        assertTrue("result = 1",result.size() == 1 );
+        assertTrue("result = 1", result.size() == 1);
         for (Users u : result) {
             assertTrue("last name", u.getLastName().equals("b"));
         }
@@ -124,6 +127,33 @@ public class UsersCrudBeanTest {
         for (Users u : result) {
             Users result2 = usersCrudBean.findById(u.getId());
             assertTrue("id > 0 ", result2.getId() > 0);
+        }
+    }
+
+    @Test
+    public void testSendMail() {
+        try {
+            usersCrudBean.sendMail("marcin3236@poczta.onet.pl","Wiadomosc testowa - java mail", "Hej");
+        }
+        catch(MessagingException e) {
+            fail("send mail failed" + e.toString());
+        }
+    }
+
+    @Ignore
+    @Test
+    public void testFindByLastNameAsynchronous(String lastName) throws Exception {
+        Users user = new Users();
+        user.setFirstName("a");
+        user.setLastName("b");
+        usersCrudBean.save(user);
+
+        Future<Users> result = usersCrudBean.findByLastNameAsynchronous("b");
+        List <Users> usersList = ((List<Users>) result.get());
+        assertTrue("result = 1", usersList.size() == 1);
+
+        for (Users u : usersList) {
+            assertTrue("last name", u.getLastName().equals("b"));
         }
     }
 }

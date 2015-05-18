@@ -9,6 +9,7 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.transaction.*;
 import java.util.List;
+import java.util.concurrent.Future;
 
 /**
  * Created by marcin on 15.05.15.
